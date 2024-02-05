@@ -26,5 +26,6 @@ Route::get('book/{id}', [BooksController::class, 'show']);
 // Authors api end-point
 Route::get('authors', [AuthorController::class, 'index']);
 Route::post('author', [AuthorController::class, 'store']);
-Route::get('author/{$id}', [AuthorController::class, 'show']);
+Route::get('author/{id}', [AuthorController::class, 'show']);
+
 
