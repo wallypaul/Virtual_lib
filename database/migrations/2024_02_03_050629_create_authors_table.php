@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('gender');
             $table->string('age');
             $table->string('country');
-            $table->string('genre_of_books');
+            $table->string('genre_of_book');
             $table->timestamps();
         });
     }

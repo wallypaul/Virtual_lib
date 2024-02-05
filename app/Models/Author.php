@@ -9,13 +9,13 @@ class Author extends Model
 {
     use HasFactory;
 
-    protected $table = 'Author';
+    protected $table = 'Authors';
 
     protected $fillable = [
         'name',
         'gender',
         'age',
         'country',
-        'genre_of_books'
+        'genre_of_book'
     ];
 }
