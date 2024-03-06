@@ -11,7 +11,8 @@ class BooksController extends Controller
 {
     //
     public function index() {
-        $books = Books::all();
+
+        $books = Books::where('status', 1)->where('status', 1)->get();
         if ($books->count() > 0) {
             return response()->json([
                 'status' => 202,
@@ -27,7 +28,7 @@ class BooksController extends Controller
                 
         }
         public function show($id) {
-            $book = Books::find($id);
+            $book = Books::find($id)->where('status', 1);
             
             if (!$book) {
                 return response()->json([
@@ -91,5 +92,24 @@ class BooksController extends Controller
                     'message' => 'Internal server error. Please try again later.'
                 ], 500);
             }
+        }
+        //add the code to update the status in the books table to 0
+        public function destroy($id) {
+            $book = Books::find($id);
+        
+            if (!$book) {
+                return response()->json([
+                    'status' => 404,
+                    'message' => "The book with the given id is not available."
+                ], 404);
+            }
+        
+            $book->status = 0;
+            $book->save();
+        
+            return response()->json([
+                'status' => 200,
+                'message' => 'Book status deleted successfully.'
+            ], 200);
         }
     }         

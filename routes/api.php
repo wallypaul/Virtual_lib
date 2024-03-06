@@ -23,6 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('books', [BooksController::class, 'index']);
 Route::post('book', [BooksController::class, 'store']);
 Route::get('book/{id}', [BooksController::class, 'show']);
+Route::delete('book/{id}', [BooksController::class, 'destroy']);
+
 // Authors api end-point
 Route::get('authors', [AuthorController::class, 'index']);
 Route::post('author', [AuthorController::class, 'store']);
