@@ -11,7 +11,7 @@ class AuthorController extends Controller
 {
         //
         public function index() {
-            $authors = Author::all();
+            $authors = Author::where('status', 1)->get();
             if ($authors->count() > 0) {
                 return response()->json([
                     'status' => 202,
@@ -27,7 +27,7 @@ class AuthorController extends Controller
                     
             }
             public function show($id) {
-                $authors = Author::find($id);
+                $authors = Author::find($id)->where('status', 1);
                 
                 if (!$authors) {
                     return response()->json([
@@ -95,6 +95,24 @@ class AuthorController extends Controller
                         'message' => 'Internal server error. Please try again later.'
                     ], 500);
                 }
+            }
+            public function destroy($id) {
+                $book = Author::find($id);
+            
+                if (!$book) {
+                    return response()->json([
+                        'status' => 404,
+                        'message' => "The author with the given id is not available."
+                    ], 404);
+                }
+            
+                $book->status = 0;
+                $book->save();
+            
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Author status deleted successfully.'
+                ], 200);
             }
             
 }

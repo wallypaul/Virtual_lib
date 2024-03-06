@@ -12,7 +12,7 @@ class BooksController extends Controller
     //
     public function index() {
 
-        $books = Books::where('status', 1)->where('status', 1)->get();
+        $books = Books::where('status', 1)->get();
         if ($books->count() > 0) {
             return response()->json([
                 'status' => 202,
