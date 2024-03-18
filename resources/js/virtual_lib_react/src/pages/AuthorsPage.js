@@ -3,6 +3,10 @@ import axios from 'axios';
 import { Table, Button, Modal, Form } from 'react-bootstrap';
 import Swal from 'sweetalert';
 
+// To extract the variable in the .env file. All the varibles saved in the ,env file, can be accessed using process.env.VARIABLE-NAME
+import 'dotenv/config'; 
+
+const backendUrl = process.env.REACT_APP_BACKEND_SERVER ;
 const AuthorsPage = () => {
   const [authors, setAuthors] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -15,8 +19,9 @@ const AuthorsPage = () => {
 
   const fetchAuthors = async () => {
     try {
-      const response = await axios.get('https://jsonplaceholder.typicode.com/users');
+      const response = await axios.get({backendUrl},'/users');
       setAuthors(response.data);
+      console.log(response.data);
     } catch (error) {
       Swal.fire('Error', 'Failed to fetch authors', 'error');
     }
@@ -46,7 +51,7 @@ const AuthorsPage = () => {
 
     if (isConfirmed.isConfirmed) {
       try {
-        await axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`);
+        await axios.delete({backendUrl},`/users/${id}`);
         setAuthors(authors.filter((author) => author.id !== id));
         Swal.fire('Deleted!', 'Author has been deleted.', 'success');
       } catch (error) {
@@ -68,7 +73,7 @@ const AuthorsPage = () => {
     }
 
     try {
-      await axios.put(`https://jsonplaceholder.typicode.com/users/${selectedAuthor.id}`, formData);
+      await axios.put({backendUrl},`/users/${selectedAuthor.id}`, formData);
       setAuthors(
         authors.map((author) =>
           author.id === selectedAuthor.id ? { ...author, ...formData } : author

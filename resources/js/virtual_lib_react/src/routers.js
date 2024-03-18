@@ -10,6 +10,10 @@ const routers = createBrowserRouter([
     element: <MainPage />
    
   },
+  {
+    path: "/authors",
+    element: <AuthorsPage />
+  }
 ]);
 
 export default routers;
