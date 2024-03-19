@@ -26,7 +26,7 @@ Route::get('book/{id}', [BooksController::class, 'show']);
 Route::delete('book/{id}', [BooksController::class, 'destroy']);
 
 // Authors api end-point
-Route::get('authors', [AuthorController::class, 'index']);
+Route::get('author', [AuthorController::class, 'index']);
 Route::post('author', [AuthorController::class, 'store']);
 Route::get('author/{id}', [AuthorController::class, 'show']);
 Route::delete('author/{id}', [AuthorController::class, 'destroy']);
