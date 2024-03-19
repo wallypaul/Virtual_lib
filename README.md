@@ -2,7 +2,7 @@
 # Project Name
 Virtual lib
 ## Introduction
-A virtual library showcasing boobks and it's authors
+A virtual library showcasing books and it's authors
 
 ## Requirements
 
