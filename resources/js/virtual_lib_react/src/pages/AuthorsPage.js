@@ -41,7 +41,6 @@ const AuthorsPage = () => {
       console.log(backendUrl);
       setAuthors(response.data);
       console.log(response.data);
-      console.log(response.data);
     } catch (error) {
       console.log(backendUrl);
       console.log('Erro: '+error.status +' ' + error );
