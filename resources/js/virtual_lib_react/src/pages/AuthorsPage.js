@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Table, Button, Modal, Form, FormGroup} from 'react-bootstrap';
-import Swal from 'sweetalert';
+import {Swal, swal} from 'sweetalert';
 
 // To extract the variable in the .env file. All the varibles saved in the ,env file, can be accessed using process.env.VARIABLE-NAME
 // import 'dotenv/config'; 
@@ -36,11 +36,17 @@ const AuthorsPage = () => {
 
   const fetchAuthors = async () => {
     try {
+
       const response = await axios.get({backendUrl});
+      console.log(backendUrl);
       setAuthors(response.data);
       console.log(response.data);
+      console.log(response.data);
     } catch (error) {
-      Swal.fire('Error', 'Failed to fetch authors', 'error');
+      console.log(backendUrl);
+      console.log('Erro: '+error.status +' ' + error );
+
+      // Swal.fire('Error', 'Failed to fetch authors', 'error');
     }
   };
 
